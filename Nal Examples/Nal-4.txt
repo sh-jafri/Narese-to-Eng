@@ -1,0 +1,255 @@
+------------------------- Structural Transformation -------------------------------------
+
+//An acid and a base can have a reaction.
+
+<(*,acid,base) --> reaction>.
+
+2
+
+//Acid can react with base.
+
+outputMustContain('<acid --> (/,reaction,_,base)>. %1.00;0.90%')
+
+//A base is something that has a reaction with an acid. 
+
+//outputMustContain('<base --> (/,reaction,acid,_)>. %1.00;0.90%')
+
+----------------------------- Structural transformation ---------------------------------
+
+//Acid can react with base.
+
+<acid --> (/,reaction,_,base)>.
+
+3
+
+//An acid and a base can have a reaction.
+
+outputMustContain('<(*,acid,base) --> reaction>. %1.00;0.90%')
+
+//A base is something that has a reaction with an acid.
+
+//outputMustContain('<base --> (/,reaction,acid,_)>. %1.00;0.90%')
+
+------------------------------ Structural transformation ----------------------------
+
+//A base is something that has a reaction with an acid.
+
+<base --> (/,reaction,acid,_)>.
+
+3
+
+//Acid can react with base.
+
+outputMustContain('<acid --> (/,reaction,_,base)>. %1.00;0.90%')
+
+//An acid and a base can have a reaction.
+
+//outputMustContain('<(*,acid,base) --> reaction>. %1.00;0.90%')
+
+------------------------------- Structural transformation -----------------------------
+
+//Neutralization is a relation between an acid and a base.
+
+<neutralization --> (*,acid,base)>.
+
+3
+
+//Something that can neutralize a base is an acid.
+
+//outputMustContain('<(\,neutralization,_,base) --> acid>. %1.00;0.90%')
+
+//Something that can be neutralized by an acid is a base.
+
+//outputMustContain('<(\,neutralization,acid,_) --> base>. %1.00;0.90%')
+
+------------------------------------------- Structural transformation -----------------------------------
+
+//Something that can neutralize a base is an acid.
+
+<(\,neutralization,_,base) --> acid>.
+
+2
+
+//Neutralization is a relation between an acid and a base.
+
+//outputMustContain('<neutralization --> (*,acid,base)>. %1.00;0.90%')
+
+//Something that can be neutralized by an acid is a base.
+
+//outputMustContain('<(\,neutralization,acid,_) --> base>. %1.00;0.90%')
+
+------------------------------------------- Structural transformation -----------------------------------------------
+
+//Something that can be neutralized by an acid is a base.
+
+<(\,neutralization,acid,_) --> base>.
+
+2
+
+//Something that can neutralize a base is an acid.
+
+//outputMustContain('<(\,neutralization,_,base) --> acid>. %1.00;0.90%')
+
+//Neutralization is a relation between an acid and a base.
+
+//outputMustContain('<neutralization --> (*,acid,base)>. %1.00;0.90%')
+
+--------------------------------- Composition on both sides of a statement ---------------------------
+
+//Bird is a type of animal.
+
+<bird --> animal>.
+
+//What is the relation between a bird and a plant?
+
+<(*,bird,plant) --> ?x>?
+
+6
+
+//The relation between bird and plant is a type of relation between animal and plant.
+
+//outputMustContain('<(*,bird,plant) --> (*,animal,plant)>. %1.00;0.81%')
+
+----------------------------- *Composition on both sides of a statement ------------------------
+
+//Neutralization is a type of reaction.
+
+<neutralization --> reaction>. 
+
+//What can be neutralized by acid?
+
+<(\,neutralization,acid,_) --> ?x>?  
+
+6
+
+//What can be neutralized by acid can react with acid. 
+
+//outputMustContain('<(\,neutralization,acid,_) --> (\,reaction,acid,_)>. %1.00;0.81%')
+
+----------------------------- Composition on both sides of a statement -----------------------------
+
+//Soda is a type of base.
+
+<soda --> base>.
+
+//What is something that can neutralize a base?
+
+<(/,neutralization,_,base) --> ?x>?
+
+6
+
+//What can neutraliz base can react with base.
+
+//outputMustContain('<(/,neutralization,_,base) --> (/,neutralization,_,soda)>. %1.00;0.81%')
+
+------------------- Compound composition, one premise -----------------
+
+//Swan is a type of bird. 
+
+<swan --> bird>. %0.90% 
+
+//Is swimming swan a type of bird?
+
+<(&,swan,swimmer) --> bird>?
+
+32
+
+//Swimming swan is a type of bird.
+
+//outputMustContain('<(&,swan,swimmer) --> bird>. %0.90;0.73%')
+
+------------------- Compound composition, one premise -----------------
+
+//Swan is a type of bird.
+
+<swan --> bird>. %0.90%
+
+//Is swan a type of nonbird swimmer?
+
+<swan --> (-,swimmer,bird)>?
+
+32
+
+//A swan is not a type of nonbird swimmer.
+
+//outputMustContain('<swan --> (-,swimmer,bird)>. %0.10;0.73%')
+
+------------------- Compound composition, one premise -----------------
+
+//Swan is a type of bird.
+
+<swan --> bird>. %0.90%
+
+//Is being bird what differ swimmer from swan?
+
+<(~,swimmer, swan) --> bird>? 
+
+32
+
+//What differs swimmer from swan is not being bird.
+
+//outputMustContain('<(~,swimmer,swan) --> bird>. %0.10;0.73%')
+
+------------------- Compound composition, one premise -----------------
+
+//Swan is a type of bird. 
+
+<swan --> bird>. %0.90%
+
+//Is being bird what differ swimmer from swan?
+
+<(~,swimmer, swan) --> bird>? 
+
+32
+
+//What differs swimmer from swan is not being bird.
+
+//outputMustContain('<(~,swimmer,swan) --> bird>. %0.10;0.73%')
+
+------------------- Compound decomposition, one premise -----------------
+
+//Robin is a type of swimming bird.
+
+<robin --> (&,bird,swimmer)>. %0.90% 
+
+32
+
+//Robin is a type of bird.
+
+//outputMustContain('<robin --> bird>. %0.90;0.73%')
+
+------------------- Compound decomposition, one premise -----------------
+
+//Robin is a type of nonswimming bird.
+
+<robin --> (-,bird,swimmer)>. %0.90%
+
+32
+
+//Robin is a type of bird.
+
+//outputMustContain('<robin --> bird>. %0.90;0.73%')
+
+------------------- Compound decomposition, one premise -----------------
+
+//Boys and girls are youth.
+
+<(|, boy, girl) --> youth>. %0.90%
+
+32
+
+//Boys are youth.
+
+//outputMustContain('<boy --> youth>. %0.90;0.73%')
+
+------------------- Compound decomposition, one premise -----------------
+
+//What differs boys from gials are being strong.
+
+<(~, boy, girl) --> [strong]>. %0.90%
+
+32
+
+//Boys are strong.
+
+//outputMustContain('<boy --> [strong]>. %0.90;0.73%')

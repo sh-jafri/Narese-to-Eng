@@ -1,0 +1,493 @@
+//If robin can fly then robin is a type of bird.
+
+<<robin --> [flying]> ==> <robin --> bird>>.
+
+//If robin can fly then robin may not a type of bird. 
+
+<<robin --> [flying]> ==> <robin --> bird>>. %0.00;0.60% 
+
+1
+
+//If robin can fly then robin is a type of bird.
+
+//outputMustContain('<<robin --> [flying]> ==> <robin --> bird>>. %0.86;0.91%')
+
+------------------------------------------- Deduction --------------------------------------
+
+//If robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>.
+
+//If robin can fly then robin is a type of bird.
+
+<<robin --> [flying]> ==> <robin --> bird>>.
+
+14
+
+//If robin can fly then robin is a type of animal.
+
+//outputMustContain('<<robin --> [flying]> ==> <robin --> animal>>. %1.00;0.81%')
+
+--------------------------------------- Exemplification -------------------------------------
+
+//If robin can fly then robin is a type of bird.
+
+<<robin --> [flying]> ==> <robin --> bird>>.
+
+//If robin is a type of bird then robin is a type of animal. 
+
+<<robin --> bird> ==> <robin --> animal>>.
+
+19
+
+//I guess if robin is a type of animal then robin can fly.
+
+//outputMustContain('<<robin --> animal> ==> <robin --> [flying]>>. %1.00;0.45%')
+
+------------------------------- Induction -----------------------------
+
+//If robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>. 
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> [flying]>>. %0.80%
+
+140
+
+//I guess if robin can fly then robin is a type of animal.
+
+//outputMustContain('<<robin --> [flying]> ==> <robin --> animal>>. %1.00;0.39%')
+
+//I guess if robin is a type of animal then robin can fly.
+
+//outputMustContain('<<robin --> animal> ==> <robin --> [flying]>>. %0.80;0.45%')
+
+------------------------------------------- Abduction -----------------------------------
+
+//If robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>.
+
+//If robin can fly then robin is probably a type of animal.
+
+<<robin --> [flying]> ==> <robin --> animal>>. %0.8%
+
+19
+
+//I guess if robin is a type of bird then robin can fly.
+
+//outputMustContain('<<robin --> bird> ==> <robin --> [flying]>>. %1.00;0.39%')
+
+//I guess if robin can fly then robin is a type of bird.
+
+//outputMustContain('<<robin --> [flying]> ==> <robin --> bird>>. %0.80;0.45%')
+
+------------------------------------------- Detachment -----------------------------------------------
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> animal>>. 
+
+//Robin is a type of bird. 
+
+<robin --> bird>.
+
+1
+
+//Robin is a type of animal.
+
+//outputMustContain('<robin --> animal>. %1.00;0.81%')
+
+--------------------------------- Detachment ---------------------------
+
+//Usually if robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>. %0.70;0.90% 
+
+//Robin is a type of animal. 
+
+<robin --> animal>.
+
+1
+
+//I guess robin is a type of bird.
+
+//outputMustContain('<robin --> bird>. %1.00;0.36%')
+
+----------------------------- Comparison ------------------------
+
+//If robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>.
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> [flying]>>. %0.80%
+
+14
+
+//I guess robin is a type of animal if and only if robin can fly.
+
+//outputMustContain('<<robin --> [flying]> <=> <robin --> animal>>. %0.80;0.45%')
+
+----------------------------- Comparison -----------------------------
+
+//If robin is a type of bird then usually robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>. %0.70%
+
+//If robin can fly then robin is a type of animal. 
+
+<<robin --> [flying]> ==> <robin --> animal>>.  
+
+19
+
+//I guess robin is a type of bird if and only if robin can fly.
+
+//outputMustContain('<<robin --> [flying]> <=> <robin --> bird>>. %0.70;0.45%')
+
+------------------------------- Analogy -------------------------------
+
+//If robin is a type of bird then robin is a type of animal.
+
+<<robin --> bird> ==> <robin --> animal>>.
+
+//Usually, robin is a type of bird if and only if robin can fly.
+
+<<robin --> bird> <=> <robin --> [flying]>>. %0.80%
+
+14
+
+//If robin can fly then probably robin is a type of animal.
+
+//outputMustContain('<<robin --> [flying]> ==> <robin --> animal>>. %0.80;0.65%')
+
+--------------------------------- Analogy -----------------------------
+
+//Robin is a type of bird.
+
+<robin --> bird>.
+
+//Usually, robin is a type of bird if and only if robin can fly.
+
+<<robin --> bird> <=> <robin --> [flying]>>. %0.80% 
+
+1
+
+//I guess usually robin can fly.
+
+//outputMustContain('<robin --> [flying]>. %0.80;0.65%')
+
+------------------------------------ Resemblance ---------------------------------
+
+//Robin is a type of animal if and only if robin is a type of bird.
+
+<<robin --> animal> <=> <robin --> bird>>. 
+
+//Robin is a type of bird if and only if robin can fly.
+
+<<robin --> bird> <=> <robin --> [flying]>>. %0.9%
+
+19
+
+//Robin is a type of animal if and only if robin can fly.
+
+//outputMustContain('<<robin --> [flying]> <=> <robin --> animal>>. %0.90;0.81%')
+
+------------------- Conversions between Implication and Equivalence -----------------
+
+//If robin can fly then robin is a type of bird.
+
+<<robin --> [flying]> ==> <robin --> bird>>. %0.9% 
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> [flying]>>. %0.9%
+
+7
+
+//Robin can fly if and only if robin is a type of bird.
+
+//outputMustContain('<<robin --> [flying]> <=> <robin --> bird>>. %0.81;0.81%')
+
+------------------- Compound composition, two premises -----------------
+
+//If robin is a type of bird then robin is a type of animal. 
+
+<<robin --> bird> ==> <robin --> animal>>. 
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> [flying]>>. %0.9% 
+
+14
+
+//If robin is a type of bird then usually robin is a type of animal and can fly.
+
+//outputMustContain('<<robin --> bird> ==> (&&,<robin --> [flying]>,<robin --> animal>)>. %0.90;0.81%')
+
+//If robin is a type of bird then robin is a type of animal or can fly.
+
+//outputMustContain('<<robin --> bird> ==> (||,<robin --> [flying]>,<robin --> animal>)>. %1.00;0.81%')
+
+------------------- Compound composition, two premises -----------------
+
+//If robin is a type of bird then robin is a type of animal. 
+
+<<robin --> bird> ==> <robin --> animal>>. 
+
+//If robin can fly then robin is a type of animal.
+
+<<robin --> [flying]> ==> <robin --> animal>>. %0.9%
+
+19
+
+//If robin can fly and is a type of bird then robin is a type of animal.
+
+//outputMustContain('<(&&,<robin --> [flying]>,<robin --> bird>) ==> <robin --> animal>>. %1.00;0.81%')
+
+//If robin can fly or is a type of bird then robin is a type of animal.
+
+//outputMustContain('<(||,<robin --> [flying]>,<robin --> bird>) ==> <robin --> animal>>. %0.90;0.81%')
+
+------------------- Compound composition, two premises -----------------
+
+//If robin is a type of bird then robin is not a type of flying animal.
+
+<<robin --> bird> ==> (&&,<robin --> animal>,<robin --> [flying]>)>. %0%
+
+//If robin is a type of bird then robin can fly.
+
+<<robin --> bird> ==> <robin --> [flying]>>.
+
+8
+
+//It is unlikely that if a robin is a type of bird then robin is a type of animal.
+
+//outputMustContain('<<robin --> bird> ==> <robin --> animal>>. %0.00;0.81%')
+
+------------------- Compound composition, two premises -----------------
+
+//Robin cannot be both a flyer and a swimmer.
+
+(&&,<robin --> [flying]>,<robin --> swimmer>). %0%
+
+//Robin can fly.
+
+<robin --> [flying]>.
+
+6
+
+//Robin cannot swim.
+
+//outputMustContain('<robin --> swimmer>. %0.00;0.81%')
+
+------------------- Compound composition, two premises -----------------
+
+//Robin can fly or swim.
+
+(||,<robin --> [flying]>,<robin --> swimmer>).  
+
+//Robin cannot swim.
+
+<robin --> swimmer>. %0%
+
+2
+
+//Robin can fly.
+
+//outputMustContain('<robin --> [flying]>. %1.00;0.81%')
+
+------------------- Compound composition, one premises -----------------
+
+//Robin can fly.
+
+<robin --> [flying]>. 
+
+//Can robin fly or swim?
+
+(||,<robin --> [flying]>,<robin --> swimmer>)?
+
+7
+
+//Robin can fly or swim.
+
+//outputMustContain('(||,<robin --> [flying]>,<robin --> swimmer>). %1.00;0.81%')
+
+------------------- Compound composition, one premises -----------------
+
+//Robin can fly and swim.
+
+(&&,<robin --> swimmer>,<robin --> [flying]>). %0.9%
+
+//Robin can swim.
+
+//outputMustContain('<robin --> swimmer>. %0.90;0.73%')
+
+5
+
+//Robin can fly.
+
+//outputMustContain('<robin --> [flying]>. %0.90;0.73%')
+
+-------------------------------------- Negation -------------------------------------
+
+//It is unlikely that robin cannot fly. 
+
+(--,<robin --> [flying]>). %0.1%
+
+3
+
+//Robin can fly.
+
+//outputMustContain('<robin --> [flying]>. %0.90;0.90%')
+
+-------------------------------------- Negation -------------------------------------
+
+//Robin can fly. 
+
+<robin --> [flying]>. %0.9%
+
+//Can robin fly or not?
+
+(--,<robin --> [flying]>)?
+
+30
+
+//It is unlikely that robin cannot fly.
+
+//outputMustContain('(--,<robin --> [flying]>). %0.10;0.90%')
+
+-------------------------------------- Contraposition -------------------------------------
+
+//It is unlikely that if robin is not a type of bird then robin can fly. 
+
+<(--,<robin --> bird>) ==> <robin --> [flying]>>. %0.1%
+
+//If robin cannot fly then is robin a type of bird?
+
+<(--,<robin --> [flying]>) ==> <robin --> bird>>?
+
+29
+
+//I guess it is unlikely that if robin cannot fly then robin is a type of bird.
+
+//outputMustContain('<(--,<robin --> [flying]>) ==> <robin --> bird>>. %0.00;0.45%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin can fly and has wings then robin is a bird.
+
+<(&&,<robin --> [flying]>,<robin --> [with-wings]>) ==> <robin --> bird>>. 
+
+//robin can fly.
+
+<robin --> [flying]>.
+
+1
+
+//If robin has wings then robin is a bird
+
+//outputMustContain('<<robin --> [with-wings]> ==> <robin --> bird>>. %1.00;0.81%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin can fly, has wings, and chirps, then robin is a bird
+
+<(&&,<robin --> [chirping]>,<robin --> [flying]>,<robin --> [with-wings]>) ==> <robin --> bird>>. 
+
+//robin can fly.
+
+<<robin --> [flying]>. 
+
+5
+
+//If robin has wings and chirps then robin is a bird.
+
+//outputMustContain('<(&&,<robin --> [chirping]>,<robin --> [with-wings]>) ==> <robin --> bird>>. %1.00;0.81%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin is a bird and it's living, then robin is an animal
+
+<(&&,<robin --> bird>,<robin --> [living]>) ==> <robin --> animal>>.  
+
+//If robin can fly, then robin is a bird
+
+<<robin --> [flying]> ==> <robin --> bird>>.
+
+1
+
+//If robin is living and it can fly, then robin is an animal.
+
+//outputMustContain('<(&&,<robin --> [flying]>,<robin --> [living]>) ==> <robin --> animal>>. %1.00;0.81%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin can fly then robin is a bird.
+
+<<robin --> [flying]> ==> <robin --> bird>>.
+
+//If robin both swims and flys then robin is a bird.
+
+<(&&,<robin --> swimmer>,<robin --> [flying]>) ==> <robin --> bird>>.
+
+7
+
+//I guess robin swims.
+
+//outputMustContain('<robin --> swimmer>. %1.00;0.45%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin is has wings and chirps, then robin is a bird
+
+<(&&,<robin --> [with-wings]>,<robin --> [chirping]>) ==> <robin --> bird>>. 
+
+//If robin can fly, has wings, and chirps, then robin is a bird
+
+<(&&,<robin --> [flying]>,<robin --> [with-wings]>,<robin --> [chirping]>) ==> <robin --> bird>>.
+
+5
+
+//I guess that robin can fly.
+
+//outputMustContain('<robin --> [flying]>. %1.00;0.45%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin can fly and it has wings, then robin is living.
+
+<(&&,<robin --> [flying]>,<robin --> [with-wings]>) ==> <robin --> [living]>>. %0.9%
+
+//If robin can fly and robin is a bird then robin is living.
+
+<(&&,<robin --> [flying]>,<robin --> bird>) ==> <robin --> [living]>>.
+
+18
+
+//I guess if robin is a bird, then robin has wings.
+
+//outputMustContain('<<robin --> bird> ==> <robin --> [with-wings]>>. %1.00;0.42%')
+
+//I guess if robin has wings, then robin is a bird.
+
+//outputMustContain('<<robin --> [with-wings]> ==> <robin --> bird>>. %0.90;0.45%')
+
+-------------------------------------- Conditional deduction -------------------------------------
+
+//If robin can fly and robin chirps, then robin is a bird
+
+<(&&,<robin --> [chirping]>,<robin --> [flying]>) ==> <robin --> bird>>. 
+
+//If robin can fly then usually robin has a beak.
+
+<<robin --> [flying]> ==> <robin --> [with-beak]>>. %0.90%
+
+18
+
+//I guess that if robin chirps and robin has a beak, then robin is a bird.
+
+//outputMustContain('<(&&,<robin --> [chirping]>,<robin --> [with-beak]>) ==> <robin --> bird>>. %1.00;0.42%')

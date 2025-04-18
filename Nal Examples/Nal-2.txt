@@ -1,0 +1,305 @@
+---------------------------------------------- Revision ----------------------------------------------------
+
+// Robin is similar to swan.
+
+<robin <-> swan>.  
+
+// I think robin is not similar to swan.
+
+<robin <-> swan>. %0.10;0.60% 
+
+1
+
+// Robin is probably similar to swan. 
+
+// outputMustContain('<robin <-> swan>. %0.87;0.91%')
+
+---------------------------------------------- Comparison -------------------------------------------------
+
+//Swan is a type of swimmer.
+
+<swan --> swimmer>. %0.90% 
+
+//Swan is a type of bird. 
+
+<swan --> bird>.  
+
+3
+
+//I guess that bird is similar to swimmer.
+
+//outputMustContain('<bird <-> swimmer>. %0.90;0.45%')
+
+---------------------------------------------- Backward Inference -----------------------------------------
+
+//Bird is a type of swimmer.
+
+<bird --> swimmer>.  
+
+//What is a swimmer?
+
+<{?1} --> swimmer>?   
+
+5
+
+//What is a bird?
+
+//outputMustContain('<{?1} --> bird>?')
+
+---------------------------------------------- Comparison-2 ---------------------------------------------
+
+//Sport is a type of competition. 
+
+<sport --> competition>. 
+
+//Chess is a type of competition. 
+
+<chess --> competition>. %0.90% 
+
+3
+
+//I guess chess is similar to sport.
+
+//outputMustContain('<chess <-> sport>. %0.90;0.45%')
+
+------------------------------------------- Analogy -----------------------------------------------
+
+//Swan is a type of swimmer. 
+
+<swan --> swimmer>. 
+
+//Gull is similar to swan. 
+
+<gull <-> swan>. 
+
+3
+
+//I think gull is a type of swimmer.
+
+//outputMustContain('<gull --> swimmer>. %1.00;0.81%')
+
+------------------------------------------- Analogy-2 -----------------------------------------------
+
+//Gull is a type of swimmer. 
+
+<gull --> swimmer>. 
+
+//Gull is similar to a swan. 
+
+<gull <-> swan>.  
+
+3
+
+//I believe a swan is a type of swimmer. 
+
+//outputMustContain('<swan --> swimmer>. %1.00;0.81%')
+
+---------------------------------------- "Resemblance -------------------------------------------
+
+//Robin is similar to swan. 
+
+<robin <-> swan>. 
+
+//Gull is similar to swan. 
+
+<gull <-> swan>. 
+
+3
+
+//Gull is similar to robin.
+
+//outputMustContain('<gull <-> robin>. %1.00;0.81%')
+
+----------------------------- Conversions between Inheritance and Similarity ------------------------
+
+//Swan is a type of bird. 
+
+<swan --> bird>. 
+
+//Bird is not a type of swan. 
+
+<bird --> swan>. %0.10% 
+
+1
+
+//Bird is different from swan.  
+
+//outputMustContain('<bird <-> swan>.')
+
+//outputMustContain('<bird <-> swan>. %0.10')
+
+//outputMustContain('<bird <-> swan>. %0.10;0.81%')
+
+----------------------------- Structure Transformation -----------------------------
+
+//Bright is similar to smart. 
+
+<bright <-> smart>. %0.90% 
+
+//Is bright thing a type of smart thing?
+
+<[smart] --> [bright]>?
+
+6
+
+//Bright thing is a type of smart thing. 
+
+//outputMustContain('<[bright] <-> [smart]>. %0.90;0.90%')
+
+//outputMustContain('<[smart] --> [bright]>. %0.90;0.66%')
+
+------------------- Conversions between Inheritance and Similarity -----------------
+
+//Swan is a type of bird. 
+
+<swan --> bird>.
+
+//Bird is different from swan.
+
+<bird <-> swan>. %0.10% 
+
+1
+
+//Bird is probably not a type of swan.  
+
+//outputMustContain('<bird --> swan>. %0.10;0.73%')
+
+------------------- Structure Transformation -----------------
+
+//Birdie is similar to Tweety 
+
+<Birdie <-> Tweety>. %0.90%
+
+//Is Birdie similar to Tweety?
+
+<{Birdie} <-> {Tweety}>? 
+
+1
+
+//Birdie is similar to Tweety.
+
+//outputMustContain('<{Birdie} <-> {Tweety}>. %0.90;0.73%')
+
+------------------- Conversions between inheritance and similarity -----------------
+
+//Swan is a type of bird. 
+
+<swan --> bird>. %0.90%
+
+//Is bird similar to swan?
+
+<bird <-> swan>?
+
+6
+
+//I guess that bird is similar to swan. 
+
+//outputMustContain('<bird <-> swan>. %0.90;0.47%')
+
+------------------- Conversions between inheritance and similarity -----------------
+
+//A bird is similar to a swan. 
+
+<bird <-> swan>. %0.90% 
+
+//Is swan a type of bird?
+
+<swan --> bird>?
+
+6
+
+//A swan is a type of bird.
+
+//outputMustContain('<swan --> bird>. %0.90;0.81%')
+
+------------------- Translating instance into inheritance -----------------
+
+//Tweety is a bird.
+
+<Tweety {-- bird>.
+
+1
+
+//Tweety is an instance of bird.
+
+//outputMustContain('<{Tweety} --> bird>. %1.00;0.90%')
+
+------------------- Translating property into inheritance -----------------
+
+//Ravens are black.
+
+<raven --] black>.
+
+1
+
+//Raven has a property black
+
+//outputMustContain('<raven --> [black]>.')
+
+------------------- Translating instance-property into inheritance -----------------
+
+//Tweety is yellow.
+
+<Tweety {-] yellow>.
+
+1
+
+//The instance Tweety has a property yellow
+
+//outputMustContain('<{Tweety} --> [yellow]>.')
+
+------------------- Set definition -----------------
+
+//Tweety is Birdie.
+
+<{Tweety} --> {Birdie}>. 
+
+3
+
+//Birdie is similar to Tweety. 
+
+//outputMustContain('<{Birdie} <-> {Tweety}>. %1.00;0.90%')
+
+------------------- Set definition -----------------
+
+//Smart thing is a type of bright thing.
+
+<[smart] --> [bright]>. 
+
+1
+
+//Bright thing is similar to smart thing.
+
+//outputMustContain('<[bright] <-> [smart]>. %1.00;0.90%')
+
+------------------- Set definition -----------------
+
+//Birdie is similar to Tweety. 
+
+<{Birdie} <-> {Tweety}>.
+
+1
+
+//Birdie is similar to Tweety.
+
+//outputMustContain('<Birdie <-> Tweety>. %1.00;0.90%')
+
+//Tweety is Birdie.
+
+//outputMustContain('<{Tweety} --> {Birdie}>. %1.00;0.90%')
+
+------------------- Set definition -----------------
+
+//Bright thing is similar to smart thing.
+
+<[bright] <-> [smart]>.
+
+1
+
+//Bright is similar to smart.
+
+//outputMustContain('<bright <-> smart>. %1.00;0.90%')
+
+//Bright thing is a type of smart thing.
+
+//outputMustContain('<[bright] --> [smart]>. %1.00;0.90%')
