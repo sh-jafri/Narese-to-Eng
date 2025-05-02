@@ -1,31 +1,10 @@
 import os
 import re
 
-def main():
-    translator = NALTranslator()
-    while True:
-        print("\nOptions:")
-        print("1. Translate a NAL file")
-        print("2. Enter NAL sentence")
-        print("3. Exit")
-        choice = input("Enter your choice (1-3): ").strip()
-        
-        if choice == "1":
-            translator.readNalFile()
-        elif choice == "2":
-            task = input("Enter NAL sentence: ").strip()
-            print("Translation:", translator.translateInput(task))
-        elif choice == "3":
-            break
-        else:
-            print("Invalid choice. Please try again.")
-if __name__ == "__main__":
-    main()
-
 
 class NALTranslator:
     def __init__(self):
-        self.copula_map = { ##copula hashmap
+        self.copula_map = {  ##copula hashmap
             "-->": "is a type of",
             "<->": "is similar to",
             "{--": "is an instance of",
@@ -50,12 +29,12 @@ class NALTranslator:
             "!": "it is certain that",
             ".": "it is possible that"
         }
-    
+
     ##Allow for users to input their own NAL file.
-    def readNalFile(translator):
+    def readNalFile(self):
         filepath = input("Enter the path to your NAL file: ").strip()
         try:
-            fileContent = translator.translate(filepath)
+            fileContent = self.translate(filepath)
             print(fileContent)
         except FileNotFoundError:
             print("NAL File could not be processed.")
@@ -82,18 +61,19 @@ class NALTranslator:
         task = task.strip()
         if not task:
             return "Empty input"
-        
         task, truth_phrase = self.truthValues(task)
 
-    def truthValues(sentence):
+        return task
+
+    def truthValues(self, sentence):
         ##Extract the truth value from Narsese sentence using tuple statements
         truth = re.search(r'%([0-9.]+)(;[0-9.]+)?%$', sentence)
 
         if not truth:
-            return sentence, "", None, None
-        
+            return sentence, ""
+
         frequency = float(truth.group(1))
-        
+
         if frequency == 0:
             truth_phrase = " is not"
         elif frequency != 0 and frequency <= 0.3:
@@ -107,5 +87,28 @@ class NALTranslator:
         elif frequency == 1.0:
             truth_phrase = " is"
 
+        return sentence[:truth.start()].strip(), truth_phrase
 
-        return sentence[:truth.start()].strip(), truth_phrase, frequency
+
+def main():
+    translator = NALTranslator()
+    while True:
+        print("\nOptions:")
+        print("1. Translate a NAL file")
+        print("2. Enter NAL sentence")
+        print("3. Exit")
+        choice = input("Enter your choice (1-3): ").strip()
+
+        if choice == "1":
+            translator.readNalFile()
+        elif choice == "2":
+            task = input("Enter NAL sentence: ").strip()
+            print("Translation:", translator.translateInput(task))
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+
+if __name__ == "__main__":
+    main()
