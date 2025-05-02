@@ -1,6 +1,28 @@
 import os
 import re
 
+def main():
+    translator = NALTranslator()
+    while True:
+        print("\nOptions:")
+        print("1. Translate a NAL file")
+        print("2. Enter NAL sentence")
+        print("3. Exit")
+        choice = input("Enter your choice (1-3): ").strip()
+        
+        if choice == "1":
+            translator.readNalFile()
+        elif choice == "2":
+            task = input("Enter NAL sentence: ").strip()
+            print("Translation:", translator.translateInput(task))
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+if __name__ == "__main__":
+    main()
+
+
 class NALTranslator:
     def __init__(self):
         self.copula_map = { ##copula hashmap
@@ -28,8 +50,17 @@ class NALTranslator:
             "!": "it is certain that",
             ".": "it is possible that"
         }
-
-
+    
+    ##Allow for users to input their own NAL file.
+    def readNalFile(translator):
+        filepath = input("Enter the path to your NAL file: ").strip()
+        try:
+            fileContent = translator.translate(filepath)
+            print(fileContent)
+        except FileNotFoundError:
+            print("NAL File could not be processed.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def translate(self, file):
         try:
@@ -52,22 +83,7 @@ class NALTranslator:
         if not task:
             return "Empty input"
         
-        task, truth_phrase = truthValues(task)
-
-
-    def translateFile(self, file_path):
-        try:
-            with open(file_path, 'r') as f:
-                content = f.read()
-            return self.translateInput(content)
-        except FileNotFoundError:
-            return f"Error: File not found at {file_path}"
-        except Exception as e:
-            return f"Error processing file: {str(e)}"
-
-    def getSentenceType(sentence):
-        return 
-
+        task, truth_phrase = self.truthValues(task)
 
     def truthValues(sentence):
         ##Extract the truth value from Narsese sentence using tuple statements
@@ -93,38 +109,3 @@ class NALTranslator:
 
 
         return sentence[:truth.start()].strip(), truth_phrase, frequency
-
-
-##Allow for users to input their own NAL file.
-    def readNalFile():
-        filepath = input("Enter the path to your NAL file: ").strip()
-        try:
-            fileContent = translate(filepath)
-            print(fileContent)
-        except FileNotFoundError:
-            print("File not found.")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
-
-
-
-def main():
-    while True:
-        print("\nOptions:")
-        print("1. Translate a NAL file")
-        print("2. Enter NAL sentence")
-        print("3. Exit")
-        choice = input("Enter your choice (1-3): ").strip()
-        
-        if choice == "1":
-            readNalFile()
-        elif choice == "2":
-            task = input("Enter NAL sentence: ").strip()
-            print("Translation:", translateInput(task))
-        elif choice == "3":
-            break
-        else:
-            print("Invalid choice. Please try again.")
-if __name__ == "__main__":
-    main()
