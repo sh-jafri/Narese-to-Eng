@@ -14,34 +14,45 @@ if __name__ == "__main__":
     main()
 
 def translateInput(task):
+
     return 0
 
 
-def translateFile(file):
-    return 0
+def translateFile(self, file_path):
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+        return self.translateInput(content)
+    except FileNotFoundError:
+        return f"Error: File not found at {file_path}"
+    except Exception as e:
+        return f"Error processing file: {str(e)}"
 
 def copulas(copula):
     hashmap = {
         "-->": "is a type of",
         "<->": "is similar to",
-        "{--": "is a",
-        "--]": "are",
-        "{-]": "is",
-        "~": "what differs",
+        "{--": "is an instance of",
+        "--]": "is a property of",
+        "{-]": "is an instance with property",
+        "~": "is not",
+        "-": "not",
         "|": "and",
-        "-": "non ing",
-        "&": "ing",
-        "/": "can",
-        "*": "and",
-        "==>": "then",
-        "_": "value2",
-        "key3": "value3",
-        "key1": "value1",
-        "key2": "value2",
-        "key3": "value3",
-        "key1": "value1",
-        "key2": "value2",
-        "key3": "value3"
+        "&": "that are",
+        "/": "or",
+        "*": "product of",
+        "==>": "implies that",
+        "=/>": "predicts that",
+        "=|>": "expects that",
+        "=\\>": "retrospects that",
+        "<=>": "is equivalent to",
+        "<?>": "whether",
+        "_": "with",
+        "\\": "the operation",
+        ",": "and",
+        "?": "is it true that",
+        "!": "it is certain that",
+        ".": "it is possible that"
     }
     return 0
 
