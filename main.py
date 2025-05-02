@@ -1,4 +1,5 @@
 import os
+import re
 
 def main():
     print(translate("Nal-1.txt"))
@@ -47,6 +48,34 @@ def copulas(copula):
 
 def getSentenceType(sentence):
     return 
+
+
+def truthValues(sentence):
+
+    """Extract the truth value from Narsese sentence using hashmapping"""
+
+    truth = re.search(r'%([0-9.]+)(;[0-9.]+)?%$', sentence)
+
+    if not truth:
+        return sentence, "", None, None
+    
+    frequency = float(truth.group(1))
+    
+    if frequency == 0:
+        truth_value = " is not"
+    elif frequency != 0 and frequency <= 0.3:
+        truth_value = "is most likely not"
+    elif frequency > 0.3 and frequency <= 0.5:
+        truth_value = "is probably not"
+    elif frequency > 0.5 and frequency <= 0.8:
+        truth_value = "is probably"
+    elif frequency > 0.8 and frequency != 1.0:
+        truth_value = " is most likely"
+    elif frequency == 1.0:
+        truth_value = " is"
+
+
+    return sentence[:truth.start()].strip(), truth_value, frequency
 
 
 ##Allow for users to input their own NAL file.
