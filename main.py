@@ -8,7 +8,7 @@ def translate(file):
     path = os.path.join("Nal Examples", file)
     f = open(path, 'r')
     content = f.read()
-    return(content)
+    return content
 
 if __name__ == "__main__":
     main()
@@ -21,6 +21,28 @@ def translateFile(file):
     return 0
 
 def copulas(copula):
+    hashmap = {
+        "-->": "is a type of",
+        "<->": "is similar to",
+        "{--": "is a",
+        "--]": "are",
+        "{-]": "is",
+        "~": "what differs",
+        "|": "and",
+        "-": "non ing",
+        "&": "ing",
+        "/": "can",
+        "*": "and",
+        "==>": "then",
+        "_": "value2",
+        "key3": "value3",
+        "key1": "value1",
+        "key2": "value2",
+        "key3": "value3",
+        "key1": "value1",
+        "key2": "value2",
+        "key3": "value3"
+    }
     return 0
 
 def getSentenceType(sentence):
