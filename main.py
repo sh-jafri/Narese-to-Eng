@@ -2,7 +2,24 @@ import os
 import re
 
 def main():
-    print(translate("Nal-1.txt"))
+    while True:
+        print("\nOptions:")
+        print("1. Translate a NAL file")
+        print("2. Enter NAL sentence directly")
+        print("3. Exit")
+        choice = input("Enter your choice (1-3): ").strip()
+        
+        if choice == "1":
+            readNalFile()
+        elif choice == "2":
+            task = input("Enter NAL sentence: ").strip()
+            print("Translation:", translateInput(task))
+        elif choice == "3":
+            break
+        else:
+            print("Invalid choice. Please try again.")
+if __name__ == "__main__":
+    main()
 
 
 def translate(file):
@@ -10,9 +27,6 @@ def translate(file):
     f = open(path, 'r')
     content = f.read()
     return content
-
-if __name__ == "__main__":
-    main()
 
 def translateInput(task):
 
